@@ -30,6 +30,7 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
+//Destructor
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
@@ -42,8 +43,6 @@ ChatBot::~ChatBot()
     }
 }
 
-//// STUDENT CODE
-////
 //Copy constructor
 ChatBot::ChatBot(const ChatBot& Source)
 {
@@ -77,7 +76,7 @@ ChatBot& ChatBot::operator=(const ChatBot& Source)
 ChatBot::ChatBot(ChatBot&& Source)
 {
     std::cout << "ChatBot Move constructor" << std::endl;
-    this->_image        = new wxBitmap(*Source._image);
+    this->_image       = Source._image;
    
     this->_chatLogic   = Source._chatLogic;
     this->_rootNode    = Source._rootNode;
@@ -93,7 +92,7 @@ ChatBot& ChatBot::operator=(ChatBot&& Source)
     std::cout << "ChatBot Move Assigment" << std::endl;
     if(this == &Source)
         return *this;
-    this->_image        = new wxBitmap(*Source._image);
+    this->_image       = Source._image;
    
     this->_chatLogic   = Source._chatLogic;
     this->_rootNode    = Source._rootNode;
@@ -104,10 +103,6 @@ ChatBot& ChatBot::operator=(ChatBot&& Source)
 
     return *this;
 }
-////
-
-////
-//// EOF STUDENT CODE
 
 void ChatBot::ReceiveMessageFromUser(std::string message)
 {
